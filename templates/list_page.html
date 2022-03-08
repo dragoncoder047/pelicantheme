@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <meta property="og:site_name" content="{{ SITENAME }}" />
+    <meta property="og:title" content="{{ SITETITLE }}" />
+    <meta property="og:description" content="{{ SITEDESCRIPTION }}" />
+    <meta property="og:image" itemprop="image" content="{{ ICON }}" />
+    <meta property="og:type" content="website" />
+    {% from 'autoinclude.html' import autoinclude %}
+    {{ autoinclude('$123$ <pre></pre> mermaid lifeviewer') }}
+{% endblock head %}
+
+{% block content %}
+    {% block content_title %}{% endblock content_title %}
+
+    {% for article in articles_page.object_list|reverse %}
+        <article>
+            <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+            <div class="details">
+                <time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+                <address>By
+                    {% for author in article.authors %}
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                    {% endfor %}
+                </address>
+            </div>
+            <summary>{{ article.summary }}</summary>
+        </article>
+        {% if not loop.last or articles_page.has_other_pages() %}<hr />{% endif %}
+    {% endfor %}
+    {% if articles_page.has_other_pages() %}
+        {% include 'pagination.html' %}
+    {% endif %}
+{% endblock content %}

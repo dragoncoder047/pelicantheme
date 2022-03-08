@@ -1,0 +1,25 @@
+{% macro autoinclude(txt) %}
+    {# PrismJS #}
+    {% if '<code' in txt %}
+        <!-- PrismJS -->
+        {% include 'prism.html' %}
+        <!-- /PrismJS -->
+    {% endif %}
+    {# KaTeX #}
+    {% if '$' in txt or '\\begin{align}' in txt %}
+        <!-- Katex -->
+        {% include 'katex.html' %}
+        <!-- /Katex -->
+    {% endif %}
+    {# Mermaid #}
+    {# {% if 'mermaid' in txt %}
+        {% include 'mermaid.html' %}
+    {% endif %} #}
+    {# LifeViewer #}
+    {% if 'lifeviewer' in txt %}
+        <!-- Lifeviewer -->
+        {% include 'lifeviewer.html' %}
+        <!-- /Lifeviewer -->
+    {% endif %}
+    {# TODO: mec2 #}
+{% endmacro %}

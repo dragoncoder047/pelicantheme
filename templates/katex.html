@@ -1,0 +1,21 @@
+{% set katex_version = '0.15.2' %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@{{ katex_version }}/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>

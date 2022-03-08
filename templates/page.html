@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block html_lang %}{{ page.lang }}{% endblock html_lang %}
+
+{% block title %}{{ SITENAME }} - {% if page.status == 'draft' %}(!!DRAFT!!) {% endif %}{{ page.title|striptags }}{% endblock title %}
+
+{% block head %}
+    {{ super() }}
+
+    {% import 'translations.html' as translations with context %}
+    {% if translations.entry_hreflang(page) %}
+        {{ translations.entry_hreflang(page) }}
+    {% endif %}
+    <meta property="og:site_name" content="{{ SITENAME }}" />
+    <meta property="og:title" content="{{ SITENAME }} - {{ page.title|striptags|escape }}" />
+    <meta property="og:description" content="{{ page.summary|striptags|escape }}" />
+    <meta property="og:image" content="{{ page.image or LOGO }}" />
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
+    <meta property="og:locale" content="{{ LOCALE }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ SITENAME }} - {{ page.title|striptags|escape }}" />
+    <meta name="twitter:description" content="{{ page.summary|striptags|escape }}" />
+    <meta name="twitter:image" content="{{ page.image or LOGO }}" />
+    {% from 'autoinclude.html' import autoinclude %}
+    {{ autoinclude(page.content) }}
+{% endblock head %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    {% import 'translations.html' as translations with context %}
+    {{ translations.translations_for(page) }}
+
+    {% if page.modified %}
+        <p><em>Last updated: {{ page.locale_modified }}</em></p>
+    {% endif %}
+
+    {{ page.content }}
+{% endblock content %}

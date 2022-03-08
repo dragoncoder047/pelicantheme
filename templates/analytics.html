@@ -1,0 +1,26 @@
+{% if GOOGLE_ANALYTICS %}
+    <script type="text/javascript">
+        (_ => {
+            var tagname = 'script';
+            var src = '//www.google-analytics.com/analytics.js';
+            var f = 'ga';
+            window.GoogleAnalyticsObject = f;
+            if (!window[f]) {
+                window.[f] = function() {
+                    if (!window[f].q) window[f].q = [];
+                    window[f].q.push(arguments);
+                };
+            }
+            window[f].l = +new Date;
+            var s = document.createElement(tagname);
+            var p = document.getElementsByTagName(tagname)[0];
+            s.async = true;
+            s.src = src;
+            p.parentNode.insertBefore(s, p);
+        })();
+
+
+        ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ GA_COOKIE_DOMAIN if GA_COOKIE_DOMAIN else 'auto' }}');
+        ga('send', 'pageview');
+    </script>
+{% endif %}
