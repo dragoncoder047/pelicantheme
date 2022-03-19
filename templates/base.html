@@ -1,3 +1,5 @@
+{% macro url_for(filename) %}{{ SITEURL }}/{{ filename }}{% endmacro %}
+
 <!DOCTYPE html>
 <html lang="{%- block html_lang -%}{{ DEFAULT_LANG }}{%- endblock html_lang -%}">
     <head>
@@ -44,16 +46,11 @@
     <body class="match-braces rainbow-braces">
         <header>
             {% block logo %}
-                <div class="flex-row">
-                    {% if LOGO %}
-                        <img src="{{ LOGO }}" width="{{ LOGO_SIZE.0 }}" alt="{{ LOGO_ALT }}" height="{{ LOGO_SIZE.1 }}" />
-                    {% endif %}
-                    <div id="sitename-text"{% if SITESUBTITLE %} class="flex-column"{% endif %}><h1>{{ SITENAME }}</h1>{% if SITESUBTITLE %}<h2>{{ SITESUBTITLE }}</h2>{% endif %}</div>
-                </div>
+                {{ LOGO_AREA_HTML }}
             {% endblock logo %}
             <nav>
                 <ul>
-                    <li><a href="{{ SITEURL }}/">Home</a></li>
+                    <li><a href="{{ url_for('') }}">Home</a></li>
                     {% for itm in MENUITEMS recursive %}
                         <li><a href="{{ itm.1 }}">{{ itm.0 }}</a>
                             {% if itm.2 %}
@@ -65,14 +62,14 @@
                     {% endfor %}
                     {% if DISPLAY_PAGES_ON_MENU %}
                         {% for p in pages %}
-                            <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                            <li{% if p == page %} class="active"{% endif %}><a href="{{ url_for(p.url) }}">{{ p.title }}</a></li>
                         {% endfor %}
                     {% endif %}
                     {% if DISPLAY_CATEGORIES_ON_MENU %}
-                        <li><a href="/categories.html">Categories</a>
+                        <li><a href="{{ url_for(CATEGORIES_SAVE_AS) }}">Categories</a>
                             <ul>
                                 {% for cat, _ in categories %}
-                                    <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                                    <li{% if cat == category %} class="active"{% endif %}><a href="{{ url_for(cat.url) }}">{{ cat }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>

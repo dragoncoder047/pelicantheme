@@ -1,0 +1,7 @@
+{% macro redirects(po) %}
+    {% if po is not defined or po.not_ie_compatible %}
+         <!--[if IE]>
+            <meta http-equiv="refresh" content="0;url=/ie-is-not-supported.html" />
+        <![endif]-->
+    {% endif %}
+{% endmacro %}

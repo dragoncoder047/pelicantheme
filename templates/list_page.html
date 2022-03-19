@@ -9,6 +9,8 @@
     <meta property="og:type" content="website" />
     {% from 'autoinclude.html' import autoinclude %}
     {{ autoinclude('$123$ <pre></pre> mermaid lifeviewer') }}
+    {% import 'ie_redirect.html' as ier with context %}
+    {{ ier.redirects() }}
 {% endblock head %}
 
 {% block content %}

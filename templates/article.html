@@ -12,6 +12,9 @@
         {{ translations.entry_hreflang(article) }}
     {% endif %}
 
+    {% import 'ie_redirect.html' as ier with context %}
+    {{ ier.redirects(page) }}
+
     {% if article.description %}
         <meta name="description" content="{{ article.description }}" />
     {% endif %}
