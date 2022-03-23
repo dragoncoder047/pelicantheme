@@ -27,7 +27,7 @@
     <meta property="og:description" content="{{ article.summary|striptags|escape }}" />
     <meta property="og:image" content="{{ article.image or LOGO }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+    <meta property="og:url" content="{{ url_for(article.url) }}" />
     <meta property="og:locale" content="{{ LOCALE }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ SITENAME }} - {{ article.title|striptags|escape }}" />
@@ -38,7 +38,7 @@
 {% endblock head %}
 
 {% block content %}
-    <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to this page">{{ article.title }}</a>{% include 'twitter.html' %}</h1>
+    <h1><a href="{{ url_for(article.url) }}" rel="bookmark" title="Permalink to this page">{{ article.title }}</a>{% include 'twitter.html' %}</h1>
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(article) }}
     <div class="post-info">
@@ -49,16 +49,18 @@
         {% if article.authors %}
             <address>By
                 {% for author in article.authors %}
-                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                    <a href="{{ url_for(author.url) }}">{{ author }}</a>
                 {% endfor %}
             </address>
         {% endif %}
-        {% if article.category and not article.categories|length <= 1 %}
-            <div class="category">Category: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></div>
+        {% if article.categories is not defined %}
+            {% if article.category %}
+                <div class="category">Category: <a href="{{ url_for(article.category.url) }}">{{ article.category }}</a></div>
+            {% endif %}
         {% else %}
-            <div class="categories">Categories:
+            <div class="category">Categories:
                 {% for c in article.categories %}
-                    <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{{ ', ' if not loop.last }}
+                    <a href="{{ url_for(article.category.url) }}">{{ article.category }}</a>{{ ', ' if not loop.last }}
                 {% endfor %}
             </div>
         {% endif %}
@@ -66,7 +68,7 @@
             <div class="tags">
                 Tags:
                 {% for tag in article.tags %}
-                    <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                    <a href="{{ url_for(tag.url) }}">{{ tag }}</a>
                 {% endfor %}
             </div>
         {% endif %}
@@ -76,7 +78,7 @@
         <ol class="series">
             {% for part_article in article.series.all %}
                 <li {% if part_article == article %}class="active"{% endif %}>
-                    <a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+                    <a href='{{ url_for(part_article.url) }}'>{{ part_article.title }}</a>
                 </li>
             {% endfor %}
         </ol>
@@ -87,7 +89,7 @@
         <p><strong>Related Posts</strong></p>
         <ul>
             {% for related_post in article.related_posts %}
-                <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+                <li><a href="{{ url_for(related_post.url) }}">{{ related_post.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
