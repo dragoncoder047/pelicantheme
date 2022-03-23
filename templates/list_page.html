@@ -16,7 +16,7 @@
 {% block content %}
     {% block content_title %}{% endblock content_title %}
 
-    {% for article in articles_page.object_list|reverse %}
+    {% for article in articles_page.object_list %}
         <article>
             <h2 class="entry-title"><a href="{{ url_for(article.url) }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
             <div class="details">
