@@ -19,7 +19,7 @@
     <meta property="og:description" content="{{ page.summary|striptags|escape }}" />
     <meta property="og:image" content="{{ page.image or LOGO }}" />
     <meta property="og:type" content="page" />
-    <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
+    <meta property="og:url" content="{{ url_for(page.url) }}" />
     <meta property="og:locale" content="{{ LOCALE }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ SITENAME }} - {{ page.title|striptags|escape }}" />

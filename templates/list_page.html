@@ -18,12 +18,12 @@
 
     {% for article in articles_page.object_list|reverse %}
         <article>
-            <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+            <h2 class="entry-title"><a href="{{ url_for(article.url) }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
             <div class="details">
                 <time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
                 <address>By
                     {% for author in article.authors %}
-                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                        <a href="{{ url_for(author.url) }}">{{ author }}</a>
                     {% endfor %}
                 </address>
             </div>
