@@ -7,6 +7,10 @@
 {% block head %}
     {{ super() }}
 
+    {% if page.status == 'draft' %}
+        <meta name="robots" content="noindex" />
+    {% endif %}
+
     {% import 'ie_redirect.html' as ier with context %}
     {{ ier.redirects(page) }}
 
