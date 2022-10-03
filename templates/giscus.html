@@ -1,0 +1,12 @@
+{% if GISCUS %}
+    <script src="https://giscus.app/client.js"
+        data-repo="{{ GISCUS.repo }}"
+        data-category="{{ GISCUS.category or 'Announcements' }}"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="{{ GISCUS.theme or 'dark' }}"
+        data-lang="{{ DEFAULT_LANG }}"
+        crossorigin="anonymous"
+    ></script>
+{% endif %}

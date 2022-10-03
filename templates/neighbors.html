@@ -1,0 +1,18 @@
+{% if article.prev_article or article.next_article %}
+    <div class="flex-row">
+        {% if article.prev_article %}
+            <span style="flex: 1">&larr; Previous:
+                <a href="{{ url_for(article.prev_article.url) }}">
+                    {{ article.prev_article.title }}
+                </a>
+            </span>
+        {% endif %}
+        {% if article.next_article %}
+            <span>Next:
+                <a href="{{ url_for(article.next_article.url) }}">
+                    {{ article.next_article.title }}
+                </a> &rarr;
+            </span>
+        {% endif %}
+    </div>
+{% endif %}
