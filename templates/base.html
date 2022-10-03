@@ -86,6 +86,7 @@
         </header>
         <main>
             {% block content %}{% endblock content %}
+            {% include 'giscus.html' %}
             <section id="extras">
                 {% if LINKS %}
                     <div class="blogroll">
@@ -113,7 +114,6 @@
                     </div>
                 {% endif %}
             </section>
-            {% include 'giscus.html' %}
         </main>
         <footer>
             <address>
