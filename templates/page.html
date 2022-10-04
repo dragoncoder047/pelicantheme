@@ -2,7 +2,7 @@
 
 {% block html_lang %}{{ page.lang }}{% endblock html_lang %}
 
-{% block title %}{{ SITENAME }} - {% if page.status == 'draft' %}(!!DRAFT!!) {% endif %}{{ page.title|striptags }}{% endblock title %}
+{% block title %}{{ page.title|striptags }}{% if page.status == 'draft' %} (DRAFT){% endif %}{% endblock title %}
 
 {% block head %}
     {{ super() }}
@@ -19,7 +19,7 @@
         {{ translations.entry_hreflang(page) }}
     {% endif %}
     <meta property="og:site_name" content="{{ SITENAME }}" />
-    <meta property="og:title" content="{{ SITENAME }} - {{ page.title|striptags|escape }}" />
+    <meta property="og:title" content="{{ page.title|striptags|escape }}" />
     <meta property="og:description" content="{{ page.summary|striptags|escape }}" />
     <meta property="og:image" content="{{ page.image or LOGO }}" />
     <meta property="og:type" content="page" />
