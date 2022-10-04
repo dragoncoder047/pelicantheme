@@ -2,7 +2,7 @@
 
 {% block html_lang %}{{ article.lang }}{% endblock html_lang %}
 
-{% block title %}{{ SITENAME }} - {% if article.status == 'draft' %}(!!DRAFT!!) {% endif %}{{ article.title|striptags }}{% endblock title %}
+{% block title %}{{ article.title|striptags }}{% if article.status == 'draft' %} (DRAFT){% endif %}{% endblock title %}
 
 {% block head %}
     {{ super() }}
@@ -26,7 +26,7 @@
         <meta name="tags" content="{{ article.tags|join(', ') }}" />
     {% endif %}
     <meta property="og:site_name" content="{{ SITENAME }}" />
-    <meta property="og:title" content="{{ SITENAME }} - {{ article.title|striptags|escape }}" />
+    <meta property="og:title" content="{{ article.title|striptags|escape }}" />
     <meta property="og:description" content="{{ article.summary|striptags|escape }}" />
     <meta property="og:image" content="{{ article.image or LOGO }}" />
     <meta property="og:type" content="article" />
@@ -88,7 +88,6 @@
         </ol>
     {% endif %}
     {{ article.content }}
-    {% include 'giscus.html' %}
     {% if article.related_posts %}
         <hr />
         <p><strong>Related Posts</strong></p>
@@ -97,5 +96,8 @@
                 <li><a href="{{ url_for(related_post.url) }}">{{ related_post.title }}</a></li>
             {% endfor %}
         </ul>
+    {% endif %}
+    {% if article.status != 'draft' %}
+        {% include 'giscus.html' %}
     {% endif %}
 {% endblock content %}
