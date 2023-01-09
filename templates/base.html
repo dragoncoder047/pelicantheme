@@ -117,7 +117,11 @@
         </main>
         <footer>
             <address>
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, and hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+                {% if FOOTER_HTML is defined %}
+                    {{ FOOTER_HTML }}
+                {% else %}
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+                {% endif %}
             </address>
             <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
             {% include 'analytics.html' %}
