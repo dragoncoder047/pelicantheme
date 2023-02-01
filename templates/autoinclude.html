@@ -21,5 +21,10 @@
         {% include 'lifeviewer.html' %}
         <!-- /Lifeviewer -->
     {% endif %}
+    {% if 'schemascii' in txt and '<svg' in txt %}
+        <!-- Lifeviewer -->
+        {% include 'schemascii.html' %}
+        <!-- /Lifeviewer -->
+    {% endif %}
     {# TODO: mec2 #}
 {% endmacro %}
