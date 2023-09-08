@@ -57,18 +57,10 @@
                 {% endfor %}
             </address>
         {% endif %}
-        {% if article.categories is not defined or article.categories|length < 2 %}
-            {% if article.category %}
-                <div class="category">Category: <a href="{{ url_for(article.category.url) }}">{{ article.category.shortname or article.category }}</a></div>
-            {% endif %}
-        {% else %}
-            <div class="category">Categories:
-                {% for c in article.categories %}
-                    <a href="{{ url_for(c.url) }}">{{ c.shortname or c }}</a>{{ ', ' if not loop.last }}
-                {% endfor %}
-            </div>
+        {% if article.category and (USE_CATEGORES is not defined or USE_CATEGORES) %}
+            <div class="category">Category: <a href="{{ url_for(article.category.url) }}">{{ article.category.shortname or article.category }}</a></div>
         {% endif %}
-        {% if article.tags %}
+        {% if article.tags and (USE_TAGS is not defined or USE_TAGS) %}
             <div class="tags">
                 Tags:
                 {% for tag in article.tags %}
