@@ -63,7 +63,7 @@
         {% if article.tags and (USE_TAGS is not defined or USE_TAGS) %}
             <div class="tags">
                 Tags:
-                {% for tag in article.tags %}
+                {% for tag in article.tags|sort %}
                     <a href="{{ url_for(tag.url) }}">{{ tag }}</a>
                 {% endfor %}
             </div>
