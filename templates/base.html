@@ -45,12 +45,12 @@
     </head>
 
     <body class="match-braces rainbow-braces">
-        <header>
+        <header class="flex-row">
             {% block logo %}
                 {{ LOGO_AREA_HTML }}
             {% endblock logo %}
-            <nav>
-                <ul>
+            <nav class="flex-row">
+                <ul class="flex-row">
                     <li><a href="{{ url_for('') }}">Home</a></li>
                     {% for itm in MENUITEMS recursive %}
                         <li><a href="{{ itm.1 }}">{{ itm.0 }}</a>
@@ -68,7 +68,7 @@
                     {% endif %}
                     {% if DISPLAY_CATEGORIES_ON_MENU %}
                         <li><a href="{{ url_for(CATEGORIES_SAVE_AS) }}">Categories</a>
-                            <ul>
+                            <ul class="flex-row">
                                 {% for cat, _ in categories %}
                                     <li{% if cat == category %} class="active"{% endif %}><a href="{{ url_for(cat.url) }}">{{ cat }}</a></li>
                                 {% endfor %}
