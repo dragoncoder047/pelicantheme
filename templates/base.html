@@ -53,7 +53,7 @@
                 <ul>
                     <li><a href="{{ url_for('') }}">Home</a></li>
                     {% for itm in MENUITEMS recursive %}
-                        <li><a href="{{ itm.1 }}">{{ itm.0 }}</a>
+                        <li><a{% if itm.1 != "#" %} href="{{ itm.1 }}"{% endif %}>{{ itm.0 }}</a>
                             {% if itm.2 %}
                                 <ul>
                                     {{ loop(itm.2) }}
