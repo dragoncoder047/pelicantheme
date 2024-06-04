@@ -40,7 +40,15 @@
                     <link rel="apple-touch-icon" href="{{ ICON }}" type="{{ ICON_MIMETYPE }}" />
                 {% endif %}
             {% endblock icons %}
-            {% if EXTRA_JS %}<script src="{{ EXTRA_JS }}"></script>{% endif %}
+            {% if EXTRA_JS %}
+                {% if EXTRA_JS is string %}
+                    <script src="{{ EXTRA_JS }}"></script>
+                {% else %}
+                    {% for script in EXTRA_JS %}
+                        <script src="{{ script }}"></script>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
         {% endblock head %}
     </head>
 
