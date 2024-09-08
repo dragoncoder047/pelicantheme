@@ -57,7 +57,7 @@
                 {% endfor %}
             </address>
         {% endif %}
-        {% if article.category and (USE_CATEGORES is not defined or USE_CATEGORES) %}
+        {% if article.category and (USE_CATEGORIES is not defined or USE_CATEGORIES) %}
             <div class="category">Category: <a href="{{ url_for(article.category.url) }}">{{ article.category.shortname or article.category }}</a></div>
         {% endif %}
         {% if article.tags and (USE_TAGS is not defined or USE_TAGS) %}
