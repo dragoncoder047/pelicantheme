@@ -1,30 +1,44 @@
 {% macro autoinclude(txt) %}
     {# PrismJS #}
-    {% if '<code' in txt %}
+    {% if "<code" in txt %}
         <!-- PrismJS -->
-        {% include 'prism.html' %}
+        {% include "prism.html" %}
         <!-- /PrismJS -->
     {% endif %}
+
     {# KaTeX #}
-    {% if '$' in txt or '\\begin{align}' in txt %}
+    {% if "$" in txt or "\\begin{align}" in txt %}
         <!-- Katex -->
-        {% include 'katex.html' %}
+        {% include "katex.html" %}
         <!-- /Katex -->
     {% endif %}
+
     {# Mermaid #}
-    {# {% if 'mermaid' in txt %}
-        {% include 'mermaid.html' %}
+    {# {% if "mermaid" in txt %}
+        {% include "mermaid.html" %}
     {% endif %} #}
+
     {# LifeViewer #}
-    {% if 'lifeviewer' in txt %}
+    {% if "lifeviewer" in txt %}
         <!-- Lifeviewer -->
-        {% include 'lifeviewer.html' %}
+        {% include "lifeviewer.html" %}
         <!-- /Lifeviewer -->
     {% endif %}
-    {% if 'schemascii' in txt and '<svg' in txt %}
+
+    {# Schemascii #}
+    {% if "schemascii" in txt and "<svg" in txt %}
         <!-- Schemascii -->
-        {% include 'schemascii.html' %}
+        {% include "schemascii.html" %}
         <!-- /Schemascii -->
     {% endif %}
+
+    {# Instagram embeds #}
+    {# cSpell: ignore instgrm #}
+    {% if "data-instgrm-permalink" in txt %}
+        <!-- Instagram embed -->
+        {% include "instagram.html" %}
+        <!-- /Instagram -->
+    {% endif %}
+
     {# TODO: mec2 #}
 {% endmacro %}
