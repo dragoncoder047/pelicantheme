@@ -73,7 +73,7 @@
         <p><em>This post is part {{ article.series.index }} of the {{ article.series.name }} series:</em></p>
         <ol class="series">
             {% for part_article in article.series.all %}
-                <li{% if part_article == article %}class="active"{% endif %}>
+                <li{% if part_article == article %} class="active"{% endif %}>
                     <a href="{{ url_for(part_article.url) }}">{{ part_article.title }}</a>
                 </li>
             {% endfor %}
