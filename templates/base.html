@@ -50,6 +50,7 @@
                 {% endif %}
             {% endif %}
         {% endblock head %}
+        {% include "analytics.html" %}
     </head>
 
     <body class="match-braces rainbow-braces">
@@ -131,7 +132,6 @@
                 {% endif %}
             </address>
             <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
-            {% include "analytics.html" %}
         </footer>
     </body>
 </html>
