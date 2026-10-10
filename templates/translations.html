@@ -1,9 +1,8 @@
 {% macro translations_for(article) %}
     {% if article.translations %}
-        {% set didtrans = False %}
         {% for translation in article.translations %}
             {% if translation.lang != article.lang %}
-                {% if not didtrans %}Translations:{% set didtrans = True %}{% endif %}
+                {% if loop.first %}Translations:{% endif %}
                 <a href="{{ url_for(translation.url) }}" hreflang="{{ translation.lang }}">{{ translation.lang }}</a>
             {% endif %}
         {% endfor %}
